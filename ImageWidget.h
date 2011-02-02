@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QPainter>
 #include <string>
 
@@ -11,13 +12,14 @@
 #include <alproxies/alvideodeviceproxy.h>
 #include <alvision/alvisiondefinitions.h>
 #include <alvision/alimage.h>
-//class QHBoxLayout;
-//class QLabel;
+
 
 class ImageWidget : public QWidget{
     Q_OBJECT
  private:
-    QHBoxLayout *layout;
+    QHBoxLayout *mainLayout;
+    QVBoxLayout *leftLayout;
+    QVBoxLayout *rightLayout;
     QLabel *label;
     int imagewidth;
     int imageheight;

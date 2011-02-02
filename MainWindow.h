@@ -3,12 +3,12 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include "ImageWidget.h"
+#include "CentralWidget.h"
 
 class MainWindow : public QMainWindow{
     Q_OBJECT
  private:
-    ImageWidget *imageWidget;
+    CentralWidget *centralWidget;
  public:
     MainWindow(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~MainWindow();
