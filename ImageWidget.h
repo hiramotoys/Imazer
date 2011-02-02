@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QPainter>
 #include <string>
 
 #include <alproxies/almemoryproxy.h>
@@ -23,17 +24,19 @@ class ImageWidget : public QWidget{
     int cameraid;
     std::string imageClient;
     AL::ALPtr<AL::ALVideoDeviceProxy> videoProxy;
-    AL::ALImage *alimage;
+    AL::ALValue alimagevalue;
+    QImage *image;
     
  public:
     ImageWidget(std::string IP, int PORT, int cameraid, QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~ImageWidget();
-    void paintEvent(QEvent *event);
-    void timerEvent(QEvent *event);
+    void paintEvent(QPaintEvent *event);
+    void timerEvent(QTimerEvent *event);
     
  private:
     void registerImageClient(std::string IP, int PORT);
     void unregisterImageClient();
+    void updateImage();
     
 };
 
