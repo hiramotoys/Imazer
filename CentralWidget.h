@@ -26,5 +26,8 @@ class CentralWidget : public QWidget{
     void initLeftLayout();
     void initRightLayout();
     void initCameraButton();
+ protected slots:
+    void changeToCameraHead();
+    void changeToCameraMouth();
 };
 #endif // CentralWidget_H

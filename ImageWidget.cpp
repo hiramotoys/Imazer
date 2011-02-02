@@ -26,6 +26,14 @@ void ImageWidget::timerEvent(QTimerEvent *event){
     update();
 }
 
+void ImageWidget::setCameraProperty(int param, int value){
+    videoProxy->setParam(param, value);
+}
+
+void ImageWidget::setCamera(int cameraid){
+    videoProxy->setParam(AL::kCameraSelectID, cameraid);
+}
+
 void ImageWidget::registerImageClient(std::string IP, int PORT){
     videoProxy = AL::makeALPtr(new AL::ALVideoDeviceProxy(IP, PORT));
     imageClient = videoProxy->subscribe("__client", AL::kQVGA, AL::kRGBColorSpace, 30);

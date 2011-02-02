@@ -1,4 +1,5 @@
 #include "CentralWidget.h"
+#include <alvision/alvisiondefinitions.h>
 #include <iostream>
 
 CentralWidget::CentralWidget(QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
@@ -28,7 +29,10 @@ void CentralWidget::initRightLayout(){
     rightLayout = new QVBoxLayout();
     cameraButtonGroup = new QGroupBox("camera select");
     camera0Button = new QRadioButton("head camera");
+    camera0Button->setChecked(true);
+    connect(camera0Button, SIGNAL(clicked()), this, SLOT(changeToCameraHead));
     camera1Button = new QRadioButton("mouth camera");
+    connect(camera1Button, SIGNAL(clicked()), this, SLOT(changeToCameraMouth));
     cameraButtonLayout = new QVBoxLayout();
     cameraButtonLayout->addWidget(camera0Button);
     cameraButtonLayout->addWidget(camera1Button);
@@ -37,6 +41,10 @@ void CentralWidget::initRightLayout(){
     centralLayout->addLayout(rightLayout);
 }
 
-void CentralWidget::initCameraButton(){
+void CentralWidget::changeToCameraHead(){
+    imageWidget->setCameraProperty(AL::kCameraSelectID, 0);
 }
 
+void CentralWidget::changeToCameraMouth(){
+    imageWidget->setCameraProperty(AL::kCameraSelectID, 1);
+}
