@@ -12,8 +12,10 @@ class CentralWidget : public QWidget{
     Q_OBJECT
  private:
     ImageWidget *imageWidget;
-    QHBoxLayout *centralLayout;
+    QVBoxLayout *centralLayout;
     QVBoxLayout *leftLayout;
+    QVBoxLayout *imageLayout;
+    QGroupBox *imageGroup;
     QVBoxLayout *rightLayout;
     QRadioButton *camera0Button;
     QRadioButton *camera1Button;

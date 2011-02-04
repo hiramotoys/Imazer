@@ -12,6 +12,7 @@ ImageWidget::ImageWidget(std::string IP, int PORT, int cameraid, QWidget *iParen
 }
 
 ImageWidget::~ImageWidget(){
+    unregisterImageClient();
 }
 
 void ImageWidget::paintEvent(QPaintEvent *event){
@@ -36,7 +37,7 @@ void ImageWidget::setCamera(int cameraid){
 
 void ImageWidget::registerImageClient(std::string IP, int PORT){
     videoProxy = AL::makeALPtr(new AL::ALVideoDeviceProxy(IP, PORT));
-    imageClient = videoProxy->subscribe("__client", AL::kQVGA, AL::kRGBColorSpace, 30);
+    imageClient = videoProxy->subscribe("_client", AL::kQVGA, AL::kRGBColorSpace, 30);
     videoProxy->setParam(AL::kCameraSelectID, cameraid);
 }
 
