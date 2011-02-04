@@ -5,7 +5,7 @@ ImageWidget::ImageWidget(std::string IP, int PORT, int cameraid, QWidget *iParen
     imagewidth = 320;
     imageheight = 240;
     this->cameraid = cameraid;
-    resize(imagewidth, imageheight);
+    //resize(imagewidth, imageheight);
     image = NULL;
     registerImageClient(IP, PORT);
     startTimer(100);

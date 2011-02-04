@@ -6,12 +6,14 @@
 #include <QSlider>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QButtonGroup>
 #include "ImageWidget.h"
 
 class CentralWidget : public QWidget{
     Q_OBJECT
  private:
     ImageWidget *imageWidget;
+    QButtonGroup *buttonGroup;
     QVBoxLayout *centralLayout;
     QVBoxLayout *leftLayout;
     QVBoxLayout *imageLayout;
@@ -32,9 +34,9 @@ class CentralWidget : public QWidget{
     ~CentralWidget();
  protected:
     void initLayout();
-    void initLeftLayout();
-    void initRightLayout();
-    void initCameraButton();
+    void initImageWidget();
+    void initCameraParamWidget();
+
  protected slots:
     void changeToCameraHead();
     void changeToCameraMouth();
