@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QButtonGroup>
+#include <QLabel>
 #include "ImageWidget.h"
 
 class CentralWidget : public QWidget{
@@ -21,6 +22,10 @@ class CentralWidget : public QWidget{
     QSlider *contrastSlider;
     QSlider *saturationSlider;
     QSlider *gainSlider;
+    QLabel *brightnessLabel;
+    QLabel *contrastLabel;
+    QLabel *saturationLabel;
+    QLabel *gainLabel;
 
  public:
     CentralWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
@@ -29,6 +34,15 @@ class CentralWidget : public QWidget{
     void initLayout();
     void initImageWidget();
     void initCameraParamWidget();
+    int getBrightnessFromNao();
+    int getContrastFromNao();
+    int getSaturationFromNao();
+    int getGainFromNao();
+    void setBrightnessLabelText(int value);
+    void setContrastLabelText(int value);
+    void setSaturationLabelText(int value);
+    void setGainLabelText(int value);
+    void initLabelAndSliderValue();
 
  protected slots:
     void changeToCameraHead();

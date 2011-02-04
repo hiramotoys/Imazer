@@ -31,6 +31,10 @@ void ImageWidget::setCameraProperty(int param, int value){
     videoProxy->setParam(param, value);
 }
 
+int ImageWidget::getCameraProperty(int param){
+    return videoProxy->getParam(param);
+}
+
 void ImageWidget::setCamera(int cameraid){
     videoProxy->setParam(AL::kCameraSelectID, cameraid);
 }

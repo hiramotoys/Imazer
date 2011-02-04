@@ -35,6 +35,7 @@ class ImageWidget : public QWidget{
     void paintEvent(QPaintEvent *event);
     void timerEvent(QTimerEvent *event);
     void setCameraProperty(int param, int value);
+    int getCameraProperty(int param);
     void setCamera(int cameraid);
  private:
     void registerImageClient(std::string IP, int PORT);
