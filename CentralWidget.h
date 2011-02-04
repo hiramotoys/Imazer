@@ -43,6 +43,7 @@ class CentralWidget : public QWidget{
     void setSaturationLabelText(int value);
     void setGainLabelText(int value);
     void initLabelAndSliderValue();
+    void initCameraSelectRadioButton();
 
  protected slots:
     void changeToCameraHead();

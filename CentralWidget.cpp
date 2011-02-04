@@ -25,10 +25,10 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonGroup = new QGroupBox("camera parameters", this);
     cameraButtonGroup->setGeometry(400, 40, 200, 500);
     camera0Button = new QRadioButton("head camera");
-    camera0Button->setChecked(true);
     connect(camera0Button, SIGNAL(clicked()), this, SLOT(changeToCameraHead()));
     camera1Button = new QRadioButton("mouth camera");
     connect(camera1Button, SIGNAL(clicked()), this, SLOT(changeToCameraMouth()));
+    initCameraSelectRadioButton();
     cameraButtonLayout = new QVBoxLayout();
     cameraButtonLayout->addWidget(camera0Button);
     cameraButtonLayout->addWidget(camera1Button);
@@ -107,6 +107,19 @@ void CentralWidget::setGainLabelText(int value){
     std::stringstream strstream;
     strstream << "gain " << value;
     gainLabel->setText(strstream.str().c_str());
+}
+
+void CentralWidget::initCameraSelectRadioButton(){
+    int value = imageWidget->getCameraProperty(AL::kCameraSelectID);
+    switch(value){
+    case 0:
+	camera0Button->setChecked(true);
+	break;
+    case 1:
+	camera1Button->setChecked(true);
+	break;
+    }
+	
 }
 
 void CentralWidget::initLabelAndSliderValue(){
