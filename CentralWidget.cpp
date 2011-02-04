@@ -137,16 +137,20 @@ void CentralWidget::changeToCameraMouth(){
 
 void CentralWidget::changeBrigtness(int value){
     imageWidget->setCameraProperty(AL::kCameraBrightnessID, value);
+    setBrightnessLabelText(value);
 }
 
 void CentralWidget::changeContrast(int value){
     imageWidget->setCameraProperty(AL::kCameraContrastID, value);
+    setContrastLabelText(value);
 }
 
 void CentralWidget::changeSaturation(int value){
     imageWidget->setCameraProperty(AL::kCameraSaturationID, value);
+    setSaturationLabelText(value);
 }
 
 void CentralWidget::changeGain(int value){
     imageWidget->setCameraProperty(AL::kCameraGainID, value);
+    setGainLabelText(value);
 }
