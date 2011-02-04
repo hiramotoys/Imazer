@@ -8,6 +8,7 @@
 #include <QHBoxLayout>
 #include <QButtonGroup>
 #include <QLabel>
+#include <QCheckBox>
 #include "ImageWidget.h"
 
 class CentralWidget : public QWidget{
@@ -22,10 +23,13 @@ class CentralWidget : public QWidget{
     QSlider *contrastSlider;
     QSlider *saturationSlider;
     QSlider *gainSlider;
+    QLabel *whiteBalanceLabel;
     QLabel *brightnessLabel;
     QLabel *contrastLabel;
     QLabel *saturationLabel;
     QLabel *gainLabel;
+    QCheckBox *autoWbCheckBox;
+    QCheckBox *autoGainCheckBox;
 
  public:
     CentralWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
@@ -52,5 +56,7 @@ class CentralWidget : public QWidget{
     void changeContrast(int value);
     void changeSaturation(int value);
     void changeGain(int value);
+    void changeAutoWhiteBalanceStatus(bool ischecked);
+    void changeAutoGainStatus(bool ischecked);
 };
 #endif // CentralWidget_H

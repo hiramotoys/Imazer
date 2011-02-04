@@ -32,6 +32,12 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonLayout = new QVBoxLayout();
     cameraButtonLayout->addWidget(camera0Button);
     cameraButtonLayout->addWidget(camera1Button);
+    whiteBalanceLabel = new QLabel(); // white balance
+    whiteBalanceLabel->setText("white balance");
+    cameraButtonLayout->addWidget(whiteBalanceLabel);
+    autoWbCheckBox = new QCheckBox("auto");
+    connect(autoWbCheckBox, SIGNAL(toggled(bool)), this, SLOT(changeAutoWhiteBalanceStatus(bool)));
+    cameraButtonLayout->addWidget(autoWbCheckBox);
     //brightness
     brightnessLabel = new QLabel();
     brightnessLabel->setText("brightness");
@@ -61,6 +67,9 @@ void CentralWidget::initCameraParamWidget(){
     gainLabel = new QLabel();
     gainLabel->setText("gain");
     cameraButtonLayout->addWidget(gainLabel);
+    autoGainCheckBox = new QCheckBox("auto");
+    connect(autoGainCheckBox, SIGNAL(toggled(bool)), this, SLOT(changeAutoGainStatus(bool)));
+    cameraButtonLayout->addWidget(autoGainCheckBox);
     gainSlider = new QSlider(Qt::Horizontal);
     gainSlider->setRange(0, 255);
     connect(gainSlider, SIGNAL(valueChanged(int)), this, SLOT(changeGain(int)));
@@ -166,4 +175,33 @@ void CentralWidget::changeSaturation(int value){
 void CentralWidget::changeGain(int value){
     imageWidget->setCameraProperty(AL::kCameraGainID, value);
     setGainLabelText(value);
+}
+
+void CentralWidget::changeAutoWhiteBalanceStatus(bool ischecked){
+    switch(ischecked){
+    case true:
+	imageWidget->setCameraProperty(AL::kCameraAutoWhiteBalanceID, 1);
+	initLabelAndSliderValue();
+	std::cout << "auto wb true" << std::endl;
+	break;
+    case false:
+	imageWidget->setCameraProperty(AL::kCameraAutoWhiteBalanceID, 0);
+	initLabelAndSliderValue();
+	std::cout << "auto wb false" << std::endl;
+	break;
+    }
+}
+
+void CentralWidget::changeAutoGainStatus(bool ischecked){
+    switch(ischecked){
+    case true:
+	imageWidget->setCameraProperty(AL::kCameraAutoGainID, 1);
+	initLabelAndSliderValue();
+	break;
+    case false:
+	imageWidget->setCameraProperty(AL::kCameraAutoGainID, 0);
+	initLabelAndSliderValue();
+	break;
+    }
+     
 }
