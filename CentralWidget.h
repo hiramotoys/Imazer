@@ -13,12 +13,6 @@ class CentralWidget : public QWidget{
     Q_OBJECT
  private:
     ImageWidget *imageWidget;
-    QButtonGroup *buttonGroup;
-    QVBoxLayout *centralLayout;
-    QVBoxLayout *leftLayout;
-    QVBoxLayout *imageLayout;
-    QGroupBox *imageGroup;
-    QVBoxLayout *rightLayout;
     QRadioButton *camera0Button;
     QRadioButton *camera1Button;
     QVBoxLayout *cameraButtonLayout;
@@ -27,8 +21,7 @@ class CentralWidget : public QWidget{
     QSlider *contrastSlider;
     QSlider *saturationSlider;
     QSlider *gainSlider;
-    QVBoxLayout *cameraParamLayout;
-    QGroupBox *cameraParamGroup;
+
  public:
     CentralWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~CentralWidget();

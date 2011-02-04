@@ -22,7 +22,6 @@ void CentralWidget::initImageWidget(){
 }
 
 void CentralWidget::initCameraParamWidget(){
-    //camera select
     cameraButtonGroup = new QGroupBox("camera select", this);
     cameraButtonGroup->setGeometry(400, 40, 200, 500);
     camera0Button = new QRadioButton("head camera");
@@ -50,31 +49,6 @@ void CentralWidget::initCameraParamWidget(){
     connect(gainSlider, SIGNAL(valueChanged(int)), this, SLOT(changeGain(int)));
     cameraButtonLayout->addWidget(gainSlider);
     cameraButtonGroup->setLayout(cameraButtonLayout);
-    //rightLayout->addWidget(cameraButtonGroup);
-    /*
-    //camera param
-    cameraParamGroup = new QGroupBox("camera parameters");
-    cameraParamLayout = new QVBoxLayout();
-    brightnessSlider = new QSlider(Qt::Horizontal);
-    brightnessSlider->setRange(0, 255);
-    connect(brightnessSlider, SIGNAL(valueChanged(int)), this, SLOT(changeBrigtness(int)));
-    cameraParamLayout->addWidget(brightnessSlider);
-    contrastSlider = new QSlider(Qt::Horizontal);
-    contrastSlider->setRange(0, 127);
-    connect(contrastSlider, SIGNAL(valueChanged(int)), this, SLOT(changeContrast(int)));
-    cameraParamLayout->addWidget(contrastSlider);
-    saturationSlider = new QSlider(Qt::Horizontal);
-    saturationSlider->setRange(0, 255);
-    connect(saturationSlider, SIGNAL(valueChanged(int)), this, SLOT(changeSaturation(int)));
-    cameraParamLayout->addWidget(saturationSlider);
-    gainSlider = new QSlider(Qt::Horizontal);
-    gainSlider->setRange(0, 255);
-    connect(gainSlider, SIGNAL(valueChanged(int)), this, SLOT(changeGain(int)));
-    cameraParamLayout->addWidget(gainSlider);
-    cameraParamGroup->setLayout(cameraParamLayout);
-    rightLayout->addWidget(cameraParamGroup);
-    //add to central widget
-    centralLayout->addLayout(rightLayout);*/
 }
 
 void CentralWidget::changeToCameraHead(){
