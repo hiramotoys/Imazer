@@ -1,10 +1,10 @@
 #include "CentralWidget.h"
 #include <alvision/alvisiondefinitions.h>
 #include <iostream>
+#include <QString>
 
 CentralWidget::CentralWidget(QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
-    //resize(320, 480);
-    initLayout();
+    initWidget();
 }
 
 CentralWidget::~CentralWidget(){
@@ -16,13 +16,27 @@ void CentralWidget::initLayout(){
     initCameraParamWidget();
 }
 
+void CentralWidget::initWidget(){
+    initIpAddressWidget();
+    initImageWidget();
+    initCameraParamWidget();
+}
+
 void CentralWidget::initIpAddressWidget(){
-    //
+    ipLabel = new QLabel(this);
+    ipLabel->setText("IP");
+    ipLabel->setGeometry(50, 15, 50, 50);
+    ipLineEdit = new QLineEdit(this);
+    ipLineEdit->setGeometry(80, 20, 120, 35);
+    ipButton = new QPushButton(this);
+    ipButton->setText("connect");
+    ipButton->setGeometry(210, 15, 90, 50);
+    connect(ipButton, SIGNAL(clicked()), this, SLOT(initWidgetStatus()));
 }
 
 void CentralWidget::initImageWidget(){
-    imageWidget = new ImageWidget("133.19.23.76", 9559, 1, this);
-    imageWidget->setGeometry(50, 40, 320, 240);
+    imageWidget = new ImageWidget(this);
+    imageWidget->setGeometry(50, 70, 320, 240);
 }
 
 void CentralWidget::initCameraParamWidget(){
@@ -32,7 +46,6 @@ void CentralWidget::initCameraParamWidget(){
     connect(camera0Button, SIGNAL(clicked()), this, SLOT(changeToCameraHead()));
     camera1Button = new QRadioButton("mouth camera");
     connect(camera1Button, SIGNAL(clicked()), this, SLOT(changeToCameraMouth()));
-    initCameraSelectRadioButton();
     cameraButtonLayout = new QVBoxLayout();
     cameraButtonLayout->addWidget(camera0Button);
     cameraButtonLayout->addWidget(camera1Button);
@@ -84,9 +97,7 @@ void CentralWidget::initCameraParamWidget(){
     gainSlider->setRange(0, 255);
     connect(gainSlider, SIGNAL(valueChanged(int)), this, SLOT(changeGain(int)));
     cameraButtonLayout->addWidget(gainSlider);
-    initLabelAndSliderValue();
     cameraButtonGroup->setLayout(cameraButtonLayout);
-    initCheckBoxStatus();
 }
 
 int CentralWidget::getFpsFromNao(){
@@ -236,5 +247,12 @@ void CentralWidget::changeAutoGainStatus(bool ischecked){
 	imageWidget->setCameraProperty(AL::kCameraAutoGainID, 0);
 	initLabelAndSliderValue();
 	break;
-    }     
+    }
+}
+
+void CentralWidget::initWidgetStatus(){
+    imageWidget->connectToNaoCamera(ipLineEdit->text().toStdString(), 9559, 1);
+    initCheckBoxStatus();
+    initLabelAndSliderValue();
+    initCameraSelectRadioButton();
 }

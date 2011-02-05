@@ -30,8 +30,10 @@ class ImageWidget : public QWidget{
     QImage *image;
     
  public:
+    ImageWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ImageWidget(std::string IP, int PORT, int cameraid, QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~ImageWidget();
+    void connectToNaoCamera(std::string IP, int PORT, int cameraid);
     void paintEvent(QPaintEvent *event);
     void timerEvent(QTimerEvent *event);
     void setCameraProperty(int param, int value);

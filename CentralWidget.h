@@ -18,7 +18,7 @@ class CentralWidget : public QWidget{
  private:
     QLabel *ipLabel;
     QLineEdit *ipLineEdit;
-    QPushButton *ipConnectButton;
+    QPushButton *ipButton;
     ImageWidget *imageWidget;
     QRadioButton *camera0Button;
     QRadioButton *camera1Button;
@@ -43,6 +43,7 @@ class CentralWidget : public QWidget{
     ~CentralWidget();
  protected:
     void initLayout();
+    void initWidget();
     void initIpAddressWidget();
     void initImageWidget();
     void initCameraParamWidget();
@@ -70,5 +71,6 @@ class CentralWidget : public QWidget{
     void changeGain(int value);
     void changeAutoWhiteBalanceStatus(bool ischecked);
     void changeAutoGainStatus(bool ischecked);
+    void initWidgetStatus();
 };
 #endif // CentralWidget_H

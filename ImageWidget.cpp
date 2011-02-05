@@ -1,11 +1,12 @@
 #include "ImageWidget.h"
 #include <iostream>
 
+ImageWidget::ImageWidget(QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
+    image = NULL;
+}
+
 ImageWidget::ImageWidget(std::string IP, int PORT, int cameraid, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
-    imagewidth = 320;
-    imageheight = 240;
     this->cameraid = cameraid;
-    //resize(imagewidth, imageheight);
     image = NULL;
     registerImageClient(IP, PORT);
     startTimer(100);
@@ -13,6 +14,12 @@ ImageWidget::ImageWidget(std::string IP, int PORT, int cameraid, QWidget *iParen
 
 ImageWidget::~ImageWidget(){
     unregisterImageClient();
+}
+
+void ImageWidget::connectToNaoCamera(std::string IP, int PORT, int cameraid){
+    this->cameraid = cameraid;
+    registerImageClient(IP, PORT);
+    startTimer(100);
 }
 
 void ImageWidget::paintEvent(QPaintEvent *event){
