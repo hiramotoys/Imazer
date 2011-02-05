@@ -82,6 +82,7 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonLayout->addWidget(gainSlider);
     initLabelAndSliderValue();
     cameraButtonGroup->setLayout(cameraButtonLayout);
+    initCheckBoxStatus();
 }
 
 int CentralWidget::getFpsFromNao(){
@@ -166,10 +167,9 @@ void CentralWidget::initLabelAndSliderValue(){
 }
 
 void CentralWidget::initCheckBoxStatus(){
-    bool ischecked;
-    ischecked = imageWidget->getCameraProperty(AL::kCameraAutoWhiteBalanceID);
-    ischecked = imageWidget->getCameraProperty(AL::kCameraAutoGainID);
-    ischecked = imageWidget->getCameraProperty(AL::kCameraAutoExpositionID);
+    autoWbCheckBox->setChecked(imageWidget->getCameraProperty(AL::kCameraAutoWhiteBalanceID));
+    autoGainCheckBox->setChecked(imageWidget->getCameraProperty(AL::kCameraAutoGainID));
+    //ischecked = imageWidget->getCameraProperty(AL::kCameraAutoExpositionID);
 }
 
 void CentralWidget::changeToCameraHead(){
@@ -180,6 +180,11 @@ void CentralWidget::changeToCameraHead(){
 void CentralWidget::changeToCameraMouth(){
     std::cout << "set camera 1" << std::endl;
     imageWidget->setCameraProperty(AL::kCameraSelectID, 1);
+}
+
+void CentralWidget::changeFps(int value){
+    imageWidget->setCameraProperty(AL::kCameraFrameRateID, value);
+    setFpsLabelText(value);
 }
 
 void CentralWidget::changeBrigtness(int value){
