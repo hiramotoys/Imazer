@@ -8,12 +8,17 @@
 #include <QHBoxLayout>
 #include <QButtonGroup>
 #include <QLabel>
+#include <QPushButton>
 #include <QCheckBox>
+#include <QLineEdit>
 #include "ImageWidget.h"
 
 class CentralWidget : public QWidget{
     Q_OBJECT
  private:
+    QLabel *ipLabel;
+    QLineEdit *ipLineEdit;
+    QPushButton *ipConnectButton;
     ImageWidget *imageWidget;
     QRadioButton *camera0Button;
     QRadioButton *camera1Button;
@@ -38,6 +43,7 @@ class CentralWidget : public QWidget{
     ~CentralWidget();
  protected:
     void initLayout();
+    void initIpAddressWidget();
     void initImageWidget();
     void initCameraParamWidget();
     int getFpsFromNao();

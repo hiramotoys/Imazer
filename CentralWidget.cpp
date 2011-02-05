@@ -16,6 +16,10 @@ void CentralWidget::initLayout(){
     initCameraParamWidget();
 }
 
+void CentralWidget::initIpAddressWidget(){
+    //
+}
+
 void CentralWidget::initImageWidget(){
     imageWidget = new ImageWidget("133.19.23.76", 9559, 1, this);
     imageWidget->setGeometry(50, 40, 320, 240);
