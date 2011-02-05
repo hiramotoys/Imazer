@@ -19,10 +19,12 @@ class CentralWidget : public QWidget{
     QRadioButton *camera1Button;
     QVBoxLayout *cameraButtonLayout;
     QGroupBox *cameraButtonGroup;
+    QSlider *fpsSlider;
     QSlider *brightnessSlider;
     QSlider *contrastSlider;
     QSlider *saturationSlider;
     QSlider *gainSlider;
+    QLabel *fpsLabel;
     QLabel *whiteBalanceLabel;
     QLabel *brightnessLabel;
     QLabel *contrastLabel;
@@ -38,20 +40,24 @@ class CentralWidget : public QWidget{
     void initLayout();
     void initImageWidget();
     void initCameraParamWidget();
+    int getFpsFromNao();
     int getBrightnessFromNao();
     int getContrastFromNao();
     int getSaturationFromNao();
     int getGainFromNao();
+    void setFpsLabelText(int value);
     void setBrightnessLabelText(int value);
     void setContrastLabelText(int value);
     void setSaturationLabelText(int value);
     void setGainLabelText(int value);
-    void initLabelAndSliderValue();
     void initCameraSelectRadioButton();
+    void initLabelAndSliderValue();
+    void initCheckBoxStatus();
 
  protected slots:
     void changeToCameraHead();
     void changeToCameraMouth();
+    void changeFps(int value);
     void changeBrigtness(int value);
     void changeContrast(int value);
     void changeSaturation(int value);

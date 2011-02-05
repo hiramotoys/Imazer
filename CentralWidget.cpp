@@ -32,6 +32,12 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonLayout = new QVBoxLayout();
     cameraButtonLayout->addWidget(camera0Button);
     cameraButtonLayout->addWidget(camera1Button);
+    fpsLabel = new QLabel();
+    fpsLabel->setText("fps");
+    cameraButtonLayout->addWidget(fpsLabel);
+    fpsSlider = new QSlider(Qt::Horizontal);
+    fpsSlider->setRange(0, 30);
+    connect(fpsSlider, SIGNAL(valueChanged(int)), this, SLOT(changeFps(int)));
     whiteBalanceLabel = new QLabel(); // white balance
     whiteBalanceLabel->setText("white balance");
     cameraButtonLayout->addWidget(whiteBalanceLabel);
@@ -78,6 +84,10 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonGroup->setLayout(cameraButtonLayout);
 }
 
+int CentralWidget::getFpsFromNao(){
+    return imageWidget->getCameraProperty(AL::kCameraFrameRateID);
+}
+
 int CentralWidget::getBrightnessFromNao(){
     return imageWidget->getCameraProperty(AL::kCameraBrightnessID);
 }
@@ -92,6 +102,12 @@ int CentralWidget::getSaturationFromNao(){
 
 int CentralWidget::getGainFromNao(){
     return imageWidget->getCameraProperty(AL::kCameraGainID);
+}
+
+void CentralWidget::setFpsLabelText(int value){
+    std::stringstream strstream;
+    strstream << "fps " << value;
+    fpsLabel->setText(strstream.str().c_str());
 }
 
 void CentralWidget::setBrightnessLabelText(int value){
@@ -133,6 +149,8 @@ void CentralWidget::initCameraSelectRadioButton(){
 
 void CentralWidget::initLabelAndSliderValue(){
     int value;
+    value = getFpsFromNao(); // setup fps
+    fpsSlider->setValue(value);
     value = getBrightnessFromNao(); // setup brightness info
     brightnessSlider->setValue(value);
     setBrightnessLabelText(value);
@@ -145,6 +163,13 @@ void CentralWidget::initLabelAndSliderValue(){
     value = getGainFromNao(); //setup gain info
     gainSlider->setValue(value);
     setGainLabelText(value);
+}
+
+void CentralWidget::initCheckBoxStatus(){
+    bool ischecked;
+    ischecked = imageWidget->getCameraProperty(AL::kCameraAutoWhiteBalanceID);
+    ischecked = imageWidget->getCameraProperty(AL::kCameraAutoGainID);
+    ischecked = imageWidget->getCameraProperty(AL::kCameraAutoExpositionID);
 }
 
 void CentralWidget::changeToCameraHead(){
@@ -202,6 +227,5 @@ void CentralWidget::changeAutoGainStatus(bool ischecked){
 	imageWidget->setCameraProperty(AL::kCameraAutoGainID, 0);
 	initLabelAndSliderValue();
 	break;
-    }
-     
+    }     
 }
