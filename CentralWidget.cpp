@@ -55,6 +55,7 @@ void CentralWidget::initCameraParamWidget(){
     fpsSlider = new QSlider(Qt::Horizontal);
     fpsSlider->setRange(0, 30);
     connect(fpsSlider, SIGNAL(valueChanged(int)), this, SLOT(changeFps(int)));
+    cameraButtonLayout->addWidget(fpsSlider);
     whiteBalanceLabel = new QLabel(); // white balance
     whiteBalanceLabel->setText("white balance");
     cameraButtonLayout->addWidget(whiteBalanceLabel);
