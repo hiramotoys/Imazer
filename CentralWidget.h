@@ -29,14 +29,17 @@ class CentralWidget : public QWidget{
     QSlider *contrastSlider;
     QSlider *saturationSlider;
     QSlider *gainSlider;
+    QSlider *expositionSlider;
     QLabel *fpsLabel;
     QLabel *whiteBalanceLabel;
     QLabel *brightnessLabel;
     QLabel *contrastLabel;
     QLabel *saturationLabel;
     QLabel *gainLabel;
+    QLabel *expositionLabel;
     QCheckBox *autoWbCheckBox;
     QCheckBox *autoGainCheckBox;
+    QCheckBox *autoExpositionBox;
 
  public:
     CentralWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
@@ -57,6 +60,7 @@ class CentralWidget : public QWidget{
     void setContrastLabelText(int value);
     void setSaturationLabelText(int value);
     void setGainLabelText(int value);
+    //    void setExpositionLabelText(int value);
     void initCameraSelectRadioButton();
     void initLabelAndSliderValue();
     void initCheckBoxStatus();
@@ -69,8 +73,10 @@ class CentralWidget : public QWidget{
     void changeContrast(int value);
     void changeSaturation(int value);
     void changeGain(int value);
+    //void changeExposition(int value);
     void changeAutoWhiteBalanceStatus(bool ischecked);
     void changeAutoGainStatus(bool ischecked);
+    void changeAutoExpositionStatus(bool ischecked);
     void initWidgetStatus();
 };
 #endif // CentralWidget_H

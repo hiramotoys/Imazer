@@ -98,6 +98,17 @@ void CentralWidget::initCameraParamWidget(){
     gainSlider->setRange(0, 255);
     connect(gainSlider, SIGNAL(valueChanged(int)), this, SLOT(changeGain(int)));
     cameraButtonLayout->addWidget(gainSlider);
+    //exposition
+    expositionLabel = new QLabel();
+    expositionLabel->setText("exposition");
+    cameraButtonLayout->addWidget(expositionLabel);
+    //expositionSlider = new QSlider(Qt::Horizonal);
+    //expositionSlider->setRange();
+    //connect(expositionSlider, SIGNAL(valueChanged(int)), this, SLOT(changeExposition(int)));
+    //expositionSlider->addWidget(expositionSlider);
+    autoExpositionBox = new QCheckBox("auto");
+    connect(autoExpositionBox, SIGNAL(valueChanged(int)), this, SLOT(changeAutoExpositionStatus()));
+    cameraButtonLayout->addWidget(autoExpositionBox);
     cameraButtonGroup->setLayout(cameraButtonLayout);
 }
 
@@ -185,7 +196,7 @@ void CentralWidget::initLabelAndSliderValue(){
 void CentralWidget::initCheckBoxStatus(){
     autoWbCheckBox->setChecked(imageWidget->getCameraProperty(AL::kCameraAutoWhiteBalanceID));
     autoGainCheckBox->setChecked(imageWidget->getCameraProperty(AL::kCameraAutoGainID));
-    //ischecked = imageWidget->getCameraProperty(AL::kCameraAutoExpositionID);
+    autoExpositionBox->setChecked(imageWidget->getCameraProperty(AL::kCameraAutoExpositionID));
 }
 
 void CentralWidget::changeToCameraHead(){
@@ -246,6 +257,19 @@ void CentralWidget::changeAutoGainStatus(bool ischecked){
 	break;
     case false:
 	imageWidget->setCameraProperty(AL::kCameraAutoGainID, 0);
+	initLabelAndSliderValue();
+	break;
+    }
+}
+
+void CentralWidget::changeAutoExpositionStatus(bool ischecked){
+    switch(ischecked){
+    case true:
+	imageWidget->setCameraProperty(AL::kCameraAutoExpositionID, 1);
+	initLabelAndSliderValue();
+	break;
+    case false:
+	imageWidget->setCameraProperty(AL::kCameraAutoExpositionID, 0);
 	initLabelAndSliderValue();
 	break;
     }
