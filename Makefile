@@ -16,7 +16,7 @@ CXXFLAGS      = -pipe -O2 -Wall -W $(DEFINES)
 INCPATH       = -I/opt/local/share/qt4/mkspecs/macx-g++ -I. -I. -I. -Isrc -I/opt/local/include/QtGui -I/opt/local/include/QtCore -I/opt/local/include -I$(AL_DIR)/include
 LINK          = $(CCACHE) /usr/bin/g++-4.0
 LFLAGS        = -headerpad_max_install_names
-LIBS          = $(SUBLIBS)   -L/opt/local/lib -lQtGui -lQtCore -L$(AL_DIR)/lib -lalcore -lalcommon -lnaoqiclient
+LIBS          = $(SUBLIBS) -L/opt/local/lib -lQtGui -lQtCore -L$(AL_DIR)/lib -lalcore -lalcommon -lnaoqiclient
 AR            = ar cq
 RANLIB        = ranlib -s
 QMAKE         = /opt/local/bin/qmake
@@ -187,7 +187,7 @@ Imazer.app/Contents/PkgInfo:
 Imazer.app/Contents/Resources/empty.lproj: 
 	@$(CHK_DIR_EXISTS) Imazer.app/Contents/Resources || $(MKDIR) Imazer.app/Contents/Resources 
 	@touch Imazer.app/Contents/Resources/empty.lproj
-	
+
 Imazer.app/Contents/Info.plist: 
 	@$(CHK_DIR_EXISTS) Imazer.app/Contents || $(MKDIR) Imazer.app/Contents 
 	@$(DEL_FILE) Imazer.app/Contents/Info.plist
