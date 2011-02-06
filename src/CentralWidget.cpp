@@ -102,12 +102,8 @@ void CentralWidget::initCameraParamWidget(){
     expositionLabel = new QLabel();
     expositionLabel->setText("exposition");
     cameraButtonLayout->addWidget(expositionLabel);
-    //expositionSlider = new QSlider(Qt::Horizonal);
-    //expositionSlider->setRange();
-    //connect(expositionSlider, SIGNAL(valueChanged(int)), this, SLOT(changeExposition(int)));
-    //expositionSlider->addWidget(expositionSlider);
     autoExpositionBox = new QCheckBox("auto");
-    connect(autoExpositionBox, SIGNAL(valueChanged(int)), this, SLOT(changeAutoExpositionStatus()));
+    connect(autoExpositionBox, SIGNAL(toggled(bool)), this, SLOT(changeAutoExpositionStatus(bool)));
     cameraButtonLayout->addWidget(autoExpositionBox);
     cameraButtonGroup->setLayout(cameraButtonLayout);
 }
