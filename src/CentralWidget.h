@@ -12,6 +12,7 @@
 #include <QCheckBox>
 #include <QLineEdit>
 #include "ImageWidget.h"
+#include "MotionControlerBox.h"
 
 class CentralWidget : public QWidget{
     Q_OBJECT
@@ -40,13 +41,14 @@ class CentralWidget : public QWidget{
     QCheckBox *autoWbCheckBox;
     QCheckBox *autoGainCheckBox;
     QCheckBox *autoExpositionBox;
-
+    MotionControlerBox *motionControlerBox;
  public:
     CentralWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~CentralWidget();
  protected:
     void initLayout();
     void initWidget();
+    void initMotionWidget();
     void initIpAddressWidget();
     void initImageWidget();
     void initCameraParamWidget();
@@ -63,6 +65,7 @@ class CentralWidget : public QWidget{
     void initCameraSelectRadioButton();
     void initLabelAndSliderValue();
     void initCheckBoxStatus();
+    void initMotionControlerBoxStatus();
 
  protected slots:
     void changeToCameraHead();

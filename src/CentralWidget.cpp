@@ -11,7 +11,6 @@ CentralWidget::~CentralWidget(){
 }
 
 void CentralWidget::initLayout(){
-    std::cout << "init layout" << std::endl;
     initImageWidget();
     initCameraParamWidget();
 }
@@ -20,6 +19,13 @@ void CentralWidget::initWidget(){
     initIpAddressWidget();
     initImageWidget();
     initCameraParamWidget();
+    initMotionWidget();
+}
+
+void CentralWidget::initMotionWidget(){
+    QRect rect(640, 40, 200, 100);
+    const QString qstr("Motion Controler");
+    motionControlerBox = new MotionControlerBox(rect, qstr, this);
 }
 
 void CentralWidget::initIpAddressWidget(){
@@ -195,6 +201,9 @@ void CentralWidget::initCheckBoxStatus(){
     autoExpositionBox->setChecked(imageWidget->getCameraProperty(AL::kCameraAutoExpositionID));
 }
 
+void CentralWidget::initMotionControlerBoxStatus(){
+}
+
 void CentralWidget::changeToCameraHead(){
     std::cout << "set camera 0" << std::endl;
     imageWidget->setCameraProperty(AL::kCameraSelectID, 0);
@@ -272,8 +281,11 @@ void CentralWidget::changeAutoExpositionStatus(bool ischecked){
 }
 
 void CentralWidget::initWidgetStatus(){
-    imageWidget->connectToNaoCamera(ipLineEdit->text().toStdString(), 9559, 1);
+    std::string IP = ipLineEdit->text().toStdString();
+    imageWidget->connectToNaoCamera(IP, 9559, 1);
+    motionControlerBox->connectToNao(IP, 9559);
     initCheckBoxStatus();
     initLabelAndSliderValue();
     initCameraSelectRadioButton();
+    initMotionControlerBoxStatus();
 }
