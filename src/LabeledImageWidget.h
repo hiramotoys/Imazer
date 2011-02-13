@@ -1,19 +1,19 @@
-#ifndef ClusteredImageWidget_H
-#define ClusteredImageWidget_H
+#ifndef LabeledImageWidget_H
+#define LabeledImageWidget_H
 
 #include <QWidget>
 #include <QImage>
 #include <QPaintEvent>
 
 
-class ClusteredImageWidget : public QWidget{
+class LabeledImageWidget : public QWidget{
  private:
     QImage *image;
  public:    
-    ClusteredImageWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
-    ~ClusteredImageWidget();
+    LabeledImageWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
+    ~LabeledImageWidget();
     void update(QImage *image);
     void paintEvent(QPaintEvent *event);
 };
 
-#endif // ClusteredImageWidget_H
+#endif // LabeledImageWidget_H

@@ -1,14 +1,14 @@
-#include "ClusteredImageWidget.h"
+#include "LabeledImageWidget.h"
 
-ClusteredImageWidget::ClusteredImageWidget(QWidget *iParent, Qt::WindowFlags iFlags){
+LabeledImageWidget::LabeledImageWidget(QWidget *iParent, Qt::WindowFlags iFlags){
 }
 
-ClusteredImageWidget::~ClusteredImageWidget(){
+LabeledImageWidget::~LabeledImageWidget(){
 }
 
-void ClusteredImageWidget::update(QImage *image){
+void LabeledImageWidget::update(QImage *image){
     this->image = image;
 }
 
-void ClusteredImageWidget::paintEvent(QPaintEvent *event){
+void LabeledImageWidget::paintEvent(QPaintEvent *event){
 }
