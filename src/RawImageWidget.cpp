@@ -1,21 +1,23 @@
 #include "RawImageWidget.h"
+#include "ClusteringWidget.h"
 #include <iostream>
 
-RawImageWidget::RawImageWidget(QWidget *iParent, Qt::WindowFlags iFlags){
+RawImageWidget::RawImageWidget(const QRect &rect, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
+    setGeometry(rect);
 }
 
 RawImageWidget::~RawImageWidget(){
 }
 
-void update(QImage *image){
+void RawImageWidget::update(QImage *image){
 }
 
-void paintEvent(QPaintEvent *event){
+void RawImageWidget::paintEvent(QPaintEvent *event){
 }
 
-void mousePressEvent(QMouseEvent *event){
+void RawImageWidget::mousePressEvent(QMouseEvent *event){
     if(event->button() == Qt::LeftButton){
-	parentWidget->clicledRawImage(event->pos());
+	((ClusteringWidget*)parentWidget())->clickedRawImage(event->pos());
 	std::cout << "clicked " << event->pos().x() << " " << event->pos().y() << std::endl;
     }
 }

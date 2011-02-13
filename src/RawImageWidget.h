@@ -3,13 +3,14 @@
 
 #include <QWidget>
 #include <QImage>
+#include <QRect>
 #include <QMouseEvent>
 
 class RawImageWidget : public QWidget{
  private:
     QImage *image;
  public:
-    RawImageWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
+    RawImageWidget(const QRect &rect, QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~RawImageWidget();
     void update(QImage *image);
     void paintEvent(QPaintEvent *event);
