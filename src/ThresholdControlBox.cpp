@@ -1,6 +1,6 @@
 #include "ThresholdControlBox.h"
 
-ThresholdControlBox::ThresholdControlBox(QRect &rect, const QString &title, QWidget *iParent){
+ThresholdControlBox::ThresholdControlBox(const QRect &rect, const QString &title, QWidget *iParent) : QGroupBox(title, iParent){
 }
 
 ThresholdControlBox::~ThresholdControlBox(){

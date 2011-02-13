@@ -119,6 +119,7 @@ int CentralWidget::getFpsFromNao(){
 }
 
 int CentralWidget::getBrightnessFromNao(){
+    std::cout << "brightness " << imageWidget->getCameraProperty(AL::kCameraBrightnessID) << std::endl;
     return imageWidget->getCameraProperty(AL::kCameraBrightnessID);
 }
 

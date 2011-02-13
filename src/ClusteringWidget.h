@@ -14,6 +14,11 @@ class ClusteringWidget : public QWidget{
  public:
     ClusteringWidget(const QRect &rect, QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~ClusteringWidget();
+ private:
+    void initRawImageWidget();
+    void initThresholdControlBox();
+
+ public:
     void clickedRawImage(const QPoint &point);
     void updateRawImage(QImage *image);
 };
