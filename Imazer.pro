@@ -12,7 +12,8 @@ HEADERS += src/CentralWidget.h \
            src/MotionControlerBox.h \
            src/ClusteringWidget.h \
            src/ThresholdControlBox.h \
-           src/ClusteredImageWidget.h
+           src/ClusteredImageWidget.h \
+           src/RawImageWidget.h
 SOURCES += src/CentralWidget.cpp \
            src/ImageWidget.cpp \
            src/Main.cpp \
@@ -20,4 +21,5 @@ SOURCES += src/CentralWidget.cpp \
            src/MotionControlerBox.cpp \
            src/ClusteringWidget.cpp \
            src/ThresholdControlBox.cpp \
-           src/ClusteredImageWidget.cpp
+           src/ClusteredImageWidget.cpp \
+           src/RawImageWidget.cpp
