@@ -13,8 +13,9 @@ class ThresholdSliderBox : QGoupBox{
     QVBoxLayout *layout;
     QSlider *frSlider;
     QSlider *toSlider;
+    int colorAttributeID;
  public:
-    ThresholdSliderBox(const QRect &rect, const QString &title, QWidget *iParent=0);
+    ThresholdSliderBox(const int colorAttributeID, const QRect &rect, const QString &title, QWidget *iParent=0);
     ~ThresholdSliderBox();
  protected slots:
     void changeThFr(int value);
