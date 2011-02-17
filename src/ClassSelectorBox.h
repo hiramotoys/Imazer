@@ -10,7 +10,7 @@
 #include "NaoWorldObjectID.h"
 
 class ClassSelectorBox : public QGroupBox{
-    Q_OBJECTS
+    Q_OBJECT
  private:
     int selectedObjID;
     QRadioButton *lines;
