@@ -8,6 +8,7 @@
 #include <QWidget>
 
 class ThresholdSliderBox : QGoupBox{
+    Q_OBJECT
  private:
     QVBoxLayout *layout;
     QSlider *frSlider;
@@ -15,6 +16,9 @@ class ThresholdSliderBox : QGoupBox{
  public:
     ThresholdSliderBox(const QRect &rect, const QString &title, QWidget *iParent=0);
     ~ThresholdSliderBox();
+ protected slots:
+    void changeThFr(int value);
+    void changeThTo(int value);
 };
 
 #endif // ThresholdSliderBox

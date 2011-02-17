@@ -12,3 +12,11 @@ ThresholdSliderBox::ThresholdSliderBox(const QRect &rect, const QString &title, 
 
 ThresholdSliderBox::~ThresholdSliderBox(){
 }
+
+void ThresholdSliderBox::changeThFr(int value){
+
+}
+
+void ThresholdSliderBox::changeThTo(int value){
+
+}
