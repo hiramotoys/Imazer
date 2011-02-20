@@ -5,9 +5,9 @@ ThresholdSliderBox::ThresholdSliderBox(const int colorAttributeID, const QRect &
     setGeometry(rect);
     layout = new QVBoxLayout();
     frSlider = new QSlider();
-    connect(SIGNAL(valueChanged(int)), this, SLOT(changeThFr(int)));
+    connect(SIGNAL(movedSlider(int)), this, SLOT(changeThFr(int)));
     toSlider = new QSlider();
-    connect(SIGNAL(valueChanged(int)), this, SLOT(changeThTo(int)));
+    connect(SIGNAL(movedSlider(int)), this, SLOT(changeThTo(int)));
     setLayout(layout);
 }
 
