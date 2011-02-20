@@ -5,15 +5,14 @@
 #include <QImage>
 #include <QPaintEvent>
 
-
 class LabeledImageWidget : public QWidget{
- private:
+  private:
     QImage *image;
- public:    
+  public:    
     LabeledImageWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~LabeledImageWidget();
-    void update(QImage *image);
     void paintEvent(QPaintEvent *event);
+    void update(QImage *update);
 };
 
 #endif // LabeledImageWidget_H
