@@ -3,13 +3,14 @@
 LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
     setGeometry(rect);
     QRect rimageWidget(0, 0, 320, 240);
-    rawImageWidget = new RawImageWidget(rect, this);
+    rawImageWidget = new RawImageWidget(rimageWidget, this);
 }
 
 LabelingWidget::~LabelingWidget(){
 }
 
 void LabelingWidget::updateRawImage(QImage *image){
+    rawImageWidget->update(image);
 }
 
 void LabelingWidget::clickedRawImage(const QPoint &point){
