@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *iParent, Qt::WindowFlags iFlags) : QMainWindow(iParent, iFlags){
     setWindowTitle("Imazer");
-    resize(900, 600);
+    resize(1400, 700);
     centralWidget = new CentralWidget(this);
     setCentralWidget(centralWidget);
     show();
