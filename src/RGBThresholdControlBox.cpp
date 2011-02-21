@@ -4,11 +4,14 @@ RGBThresholdControlBox::RGBThresholdControlBox(const QRect &rect, const QString 
     setGeometry(rect);
     layout = new QVBoxLayout();
     QRect rectRedSlider(0, 0, 100, 50);
-    redSlider = new ThresholdSliderBox(ColorAttributeID::R, rectRedSlider, "red threshold", layout);
+    redSlider = new ThresholdSliderBox(ColorAttributeID::R, rectRedSlider, "red threshold");
+    layout->addWidget(redSlider);
     QRect rectGreenSlider(0, 50, 100, 50);
-    greenSlider = new ThresholdSliderBox(ColorAttributeID::G, rectGreenSlider, "green threshold", layout);
+    greenSlider = new ThresholdSliderBox(ColorAttributeID::G, rectGreenSlider, "green threshold");
+    layout->addWidget(greenSlider);
     QRect rectBlueSlider(0, 100, 100, 50);
-    blueSlider = new ThresholdSliderBox(ColorAttributeID::B, rectBlueSlider, "blue threshold", layout);
+    blueSlider = new ThresholdSliderBox(ColorAttributeID::B, rectBlueSlider, "blue threshold");
+    layout->addWidget(blueSlider);
     setLayout(layout);
 }
 
@@ -23,17 +26,17 @@ void RGBThresholdControlBox::setThValue(const int cattribute, int fr, int to){
     case ColorAttributeID::R:
 	r.fr = fr;
 	r.to = to;
-	redSlider.setValue(fr, to);
+	redSlider->setValue(fr, to);
 	break;
     case ColorAttributeID::G:
 	g.fr = fr;
 	g.to = to;
-	greenSlider.setValue(fr, to);
+	greenSlider->setValue(fr, to);
 	break;
     case ColorAttributeID::B:
 	b.fr = fr;
 	b.to = to;
-	blueSlider.setValue(fr, to);
+	blueSlider->setValue(fr, to);
 	break;
     }
 }
@@ -58,7 +61,7 @@ void RGBThresholdControlBox::updateThFrBySlider(const int cattribute, int fr){
 /**
  * moved slider, update threshold
  */
-void RGBThresholdControlBox::updateThToBySlider(const int cattribute, int fr, int to){
+void RGBThresholdControlBox::updateThToBySlider(const int cattribute, int to){
     switch(cattribute){
     case ColorAttributeID::R:
 	r.to = to;

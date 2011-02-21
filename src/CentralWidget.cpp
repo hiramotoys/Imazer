@@ -2,6 +2,7 @@
 #include <alvision/alvisiondefinitions.h>
 #include <iostream>
 #include <QString>
+#include "RawImageWidget.h"
 
 CentralWidget::CentralWidget(QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
     initWidget();
@@ -19,11 +20,17 @@ void CentralWidget::initWidget(){
     initIpAddressWidget();
     initImageWidget();
     initCameraParamWidget();
+    initLabelingWidget();
     initMotionWidget();
 }
 
+void CentralWidget::initLabelingWidget(){
+    QRect rect(590, 60, 810, 500);
+    labelingWidget = new LabelingWidget(rect, this);
+}
+
 void CentralWidget::initMotionWidget(){
-    QRect rect(640, 40, 200, 100);
+    QRect rect(40, 580, 200, 100);
     const QString qstr("Motion Controler");
     motionControlerBox = new MotionControlerBox(rect, qstr, this);
 }
@@ -31,7 +38,7 @@ void CentralWidget::initMotionWidget(){
 void CentralWidget::initIpAddressWidget(){
     ipLabel = new QLabel(this);
     ipLabel->setText("IP");
-    ipLabel->setGeometry(50, 15, 50, 50);
+    ipLabel->setGeometry(50, 10, 50, 50);
     ipLineEdit = new QLineEdit(this);
     ipLineEdit->setGeometry(80, 20, 120, 35);
     ipButton = new QPushButton(this);
@@ -42,12 +49,12 @@ void CentralWidget::initIpAddressWidget(){
 
 void CentralWidget::initImageWidget(){
     imageWidget = new ImageWidget(this);
-    imageWidget->setGeometry(50, 70, 320, 240);
+    imageWidget->setGeometry(260, 60, 320, 240);
 }
 
 void CentralWidget::initCameraParamWidget(){
     cameraButtonGroup = new QGroupBox("camera parameters", this);
-    cameraButtonGroup->setGeometry(400, 40, 200, 500);
+    cameraButtonGroup->setGeometry(40, 60, 200, 500);
     camera0Button = new QRadioButton("head camera");
     connect(camera0Button, SIGNAL(clicked()), this, SLOT(changeToCameraHead()));
     camera1Button = new QRadioButton("mouth camera");

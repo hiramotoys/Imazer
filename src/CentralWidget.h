@@ -13,6 +13,7 @@
 #include <QLineEdit>
 #include "ImageWidget.h"
 #include "MotionControlerBox.h"
+#include "LabelingWidget.h"
 
 class CentralWidget : public QWidget{
     Q_OBJECT
@@ -41,6 +42,7 @@ class CentralWidget : public QWidget{
     QCheckBox *autoWbCheckBox;
     QCheckBox *autoGainCheckBox;
     QCheckBox *autoExpositionBox;
+    LabelingWidget *labelingWidget;
     MotionControlerBox *motionControlerBox;
  public:
     CentralWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
@@ -48,6 +50,7 @@ class CentralWidget : public QWidget{
  protected:
     void initLayout();
     void initWidget();
+    void initLabelingWidget();
     void initMotionWidget();
     void initIpAddressWidget();
     void initImageWidget();

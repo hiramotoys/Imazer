@@ -3,17 +3,22 @@
 ClassSelectorBox::ClassSelectorBox(const QRect &rect, const QString &title, QWidget *iParent) : QGroupBox(title, iParent){
     selectedObjID = -1;
     setGeometry(rect);
-    layout = QHBoxLayout();
-    lines = new QRadioButton("Lines", layout);
+    layout = new QHBoxLayout();
+    lines = new QRadioButton("Lines");
     connect(lines, SIGNAL(clicked()), this, SLOT(changeSelectedObjectIDToLines()));
-    green = new QRadioButton("Green", layout);
+    layout->addWidget(lines);
+    green = new QRadioButton("Green");
     connect(green, SIGNAL(clicked()), this, SLOT(changeSelectedObjectIDToLines()));
-    ball = new QRadioButton("Ball", layout);
+    layout->addWidget(green);
+    ball = new QRadioButton("Ball");
     connect(ball, SIGNAL(clicked()), this, SLOT(changeSelectedObjectIDToLines()));
-    goalYellow = new QRadioButton("Goal Yellow", layout);
+    layout->addWidget(ball);
+    goalYellow = new QRadioButton("Goal Yellow");
     connect(goalYellow, SIGNAL(clicked()), this, SLOT(changeSelectedObjectIDToLines()));
-    goalBlue = new QRadioButton("Goal Blue", layout);
+    layout->addWidget(goalYellow);
+    goalBlue = new QRadioButton("Goal Blue");
     connect(goalBlue, SIGNAL(clicked()), this, SLOT(changeSelectedObjectIDToLines()));
+    layout->addWidget(goalBlue);
     setLayout(layout);
 }
 

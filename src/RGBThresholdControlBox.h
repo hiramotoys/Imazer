@@ -22,7 +22,7 @@ class RGBThresholdControlBox : public QGroupBox{
     ~RGBThresholdControlBox();
     void setThValue(const int cattribute, int fr, int to);
     void updateThFrBySlider(const int cattribute, int fr);
-    void updateThToBySlider(const int cattribute, in to);
+    void updateThToBySlider(const int cattribute, int to);
 };
 
 #endif // RGBThresholdControlBox
