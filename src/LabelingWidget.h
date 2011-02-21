@@ -2,10 +2,11 @@
 #define LabelingWidget_H
 
 #include <QWidget>
+#include <QRect>
 #include "RawImageWidget.h"
 #include "LabeledImageWidget.h"
 #include "RGBThresholdControlBox.h"
-#include "ClassSelectBox.h"
+#include "ClassSelectorBox.h"
 
 class LabelingWidget : public QWidget{
   private:
@@ -16,9 +17,9 @@ class LabelingWidget : public QWidget{
     RGBThresholdControlBox *rgbThLines;
     RGBThresholdControlBox *rgbThGoalYellow;
     RGBThresholdControlBox *rgbThGoalBlue;
-    ClassSelectBox *classSelectBox;
+    ClassSelectorBox *classSelectorBox;
   public:
-    LabelingWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
+    LabelingWidget(const QRect &rect, QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~LabelingWidget();
     void updateRawImage(QImage *image);
     void clickedRawImage(const QPoint &point);

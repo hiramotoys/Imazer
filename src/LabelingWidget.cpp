@@ -1,6 +1,9 @@
 #include "LabelingWidget.h"
 
-LabelingWidget::LabelingWidget(QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
+LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
+    setGeometry(rect);
+    QRect rimageWidget(0, 0, 320, 240);
+    rawImageWidget = new RawImageWidget(rect, this);
 }
 
 LabelingWidget::~LabelingWidget(){
