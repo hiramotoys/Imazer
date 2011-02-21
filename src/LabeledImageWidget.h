@@ -9,7 +9,7 @@ class LabeledImageWidget : public QWidget{
   private:
     QImage *image;
   public:    
-    LabeledImageWidget(QWidget *iParent=0, Qt::WindowFlags iFlags=0);
+    LabeledImageWidget(const QRect &rect, QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~LabeledImageWidget();
     void paintEvent(QPaintEvent *event);
     void update(QImage *update);
