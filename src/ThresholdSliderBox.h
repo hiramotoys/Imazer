@@ -6,8 +6,9 @@
 #include <QRect>
 #include <QString>
 #include <QWidget>
+#include <QSlider>
 
-class ThresholdSliderBox : QGoupBox{
+class ThresholdSliderBox : public QGroupBox{
     Q_OBJECT
  private:
     QVBoxLayout *layout;
