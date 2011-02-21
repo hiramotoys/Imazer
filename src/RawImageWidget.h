@@ -5,6 +5,7 @@
 #include <QImage>
 #include <QRect>
 #include <QMouseEvent>
+#include <QPainter>
 
 class RawImageWidget : public QWidget{
  private:

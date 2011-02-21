@@ -4,7 +4,12 @@
 
 RawImageWidget::RawImageWidget(const QRect &rect, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
     setGeometry(rect);
-    image->load("../test/00000018.png");
+    std::cout << "init rawimagewidget" << std::endl;
+    //this->image = NULL;
+    this->image = new QImage();
+    std::cout << "new" << std::endl;
+    bool isLoaded = this->image->load("/Users/hiramoto/Documents/workspace/Imazer/test/00000018.png");
+    std::cout << "loaded " << isLoaded << std::endl;
 }
 
 RawImageWidget::~RawImageWidget(){
@@ -16,9 +21,13 @@ void RawImageWidget::update(QImage *image){
 }
 
 void RawImageWidget::paintEvent(QPaintEvent *event){
-    if(this->image != NULL){
+    std::cout << "paint event" << std::endl;
+    std::cout << this->image << std::endl;
+    if(!this->image->isNull()){
+	std::cout << "!NULL" << std::endl;
 	QPainter painter(this);
 	painter.drawImage(painter.viewport(), *image);
+	std::cout << "painted" << std::endl;
     }
 }
 
