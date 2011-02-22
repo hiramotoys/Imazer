@@ -14,10 +14,11 @@ class RGBThresholdControlBox : public QGroupBox{
     ThresholdSliderBox *redSlider;
     ThresholdSliderBox *greenSlider;
     ThresholdSliderBox *blueSlider;
+ public:
     Threshold r;
     Threshold g;
     Threshold b;
- public:
+    RGBThresholdControlBox(const QString &title, QWidget *iParent=0);
     RGBThresholdControlBox(const QRect &rect, const QString &title, QWidget *iParent=0);
     ~RGBThresholdControlBox();
     void setThValue(const int cattribute, int fr, int to);

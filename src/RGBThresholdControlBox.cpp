@@ -1,5 +1,19 @@
 #include "RGBThresholdControlBox.h"
 
+RGBThresholdControlBox::RGBThresholdControlBox(const QString &title, QWidget *iParent) : QGroupBox(title, iParent){
+    layout = new QVBoxLayout();
+    QRect rectRedSlider(0, 0, 100, 50);
+    redSlider = new ThresholdSliderBox(ColorAttributeID::R, rectRedSlider, "red threshold");
+    layout->addWidget(redSlider);
+    QRect rectGreenSlider(0, 50, 100, 50);
+    greenSlider = new ThresholdSliderBox(ColorAttributeID::G, rectGreenSlider, "green threshold");
+    layout->addWidget(greenSlider);
+    QRect rectBlueSlider(0, 100, 100, 50);
+    blueSlider = new ThresholdSliderBox(ColorAttributeID::B, rectBlueSlider, "blue threshold");
+    layout->addWidget(blueSlider);
+    setLayout(layout);
+}
+
 RGBThresholdControlBox::RGBThresholdControlBox(const QRect &rect, const QString &title, QWidget *iParent) : QGroupBox(title, iParent){
     setGeometry(rect);
     layout = new QVBoxLayout();
