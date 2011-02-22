@@ -27,6 +27,12 @@ void ImageWidget::paintEvent(QPaintEvent *event){
 	QPainter painter(this);
 	painter.drawImage(painter.viewport(), *image);
     }
+    else{
+	QPainter painter(this);
+	QRectF rect(0, 0, 320, 240);
+	painter.setBrush(Qt::black);
+	painter.drawRect(rect);
+    }
 }
 
 void ImageWidget::timerEvent(QTimerEvent *event){
