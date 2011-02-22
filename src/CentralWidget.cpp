@@ -25,7 +25,7 @@ void CentralWidget::initWidget(){
 }
 
 void CentralWidget::initLabelingWidget(){
-    QRect rect(590, 0, 810, 600);
+    QRect rect(590, 0, 1200, 600);
     labelingWidget = new LabelingWidget(rect, this);
 }
 
