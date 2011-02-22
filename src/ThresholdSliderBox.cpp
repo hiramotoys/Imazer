@@ -4,10 +4,12 @@ ThresholdSliderBox::ThresholdSliderBox(const int colorAttributeID, const QRect &
     this->colorAttributeID = colorAttributeID;
     setGeometry(rect);
     layout = new QVBoxLayout();
-    frSlider = new QSlider();
+    frSlider = new QSlider(Qt::Horizontal);
     connect(frSlider, SIGNAL(sliderMoved(int)), this, SLOT(changeThFr(int)));
-    toSlider = new QSlider();
+    layout->addWidget(frSlider);
+    toSlider = new QSlider(Qt::Horizontal);
     connect(toSlider, SIGNAL(sliderMoved(int)), this, SLOT(changeThTo(int)));
+    layout->addWidget(toSlider);
     setLayout(layout);
 }
 
