@@ -25,7 +25,7 @@ void CentralWidget::initWidget(){
 }
 
 void CentralWidget::initLabelingWidget(){
-    QRect rect(590, 60, 810, 500);
+    QRect rect(590, 0, 810, 600);
     labelingWidget = new LabelingWidget(rect, this);
 }
 
@@ -49,7 +49,7 @@ void CentralWidget::initIpAddressWidget(){
 
 void CentralWidget::initImageWidget(){
     imageWidget = new ImageWidget(this);
-    imageWidget->setGeometry(260, 60, 320, 240);
+    imageWidget->setGeometry(260, 80, 320, 240);
 }
 
 void CentralWidget::initCameraParamWidget(){
