@@ -11,6 +11,12 @@ RGBThresholdControlBox::RGBThresholdControlBox(const QString &title, QWidget *iP
     QRect rectBlueSlider(0, 100, 100, 50);
     blueSlider = new ThresholdSliderBox(ColorAttributeID::B, rectBlueSlider, "blue threshold");
     layout->addWidget(blueSlider);
+    r.fr = 0;
+    r.to = 0;
+    g.fr = 0;
+    g.to = 0;
+    b.fr = 0;
+    b.to = 0;
     setLayout(layout);
 }
 
@@ -26,6 +32,12 @@ RGBThresholdControlBox::RGBThresholdControlBox(const QRect &rect, const QString 
     QRect rectBlueSlider(0, 100, 100, 50);
     blueSlider = new ThresholdSliderBox(ColorAttributeID::B, rectBlueSlider, "blue threshold");
     layout->addWidget(blueSlider);
+    r.fr = 0;
+    r.to = 0;
+    g.fr = 0;
+    g.to = 0;
+    b.fr = 0;
+    b.to = 0;
     setLayout(layout);
 }
 
