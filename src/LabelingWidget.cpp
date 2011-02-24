@@ -25,6 +25,11 @@ LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFl
     rgbThGoalBlue = new RGBThresholdControlBox("goal blue");
     sliderLayout->addWidget(rgbThGoalBlue);
     sliderGroupBox->setLayout(sliderLayout);
+    this->image = new QImage();
+    std::cout << "new" << std::endl;
+    bool isLoaded = this->image->load("/Users/hiramoto/Documents/workspace/Imazer/test/00000018.png");
+    std::cout << "loaded " << isLoaded << std::endl;
+    rawImageWidget->update(image);
 }
 
 LabelingWidget::~LabelingWidget(){
@@ -45,11 +50,14 @@ void LabelingWidget::clickedRawImage(const QPoint &point){
 }
 
 void LabelingWidget::clickedLinesPixel(const QPoint &point){
+    std::cout << "clickedLinesPixel" << std::endl;
     QRgb rgb = image->pixel(point);
+    std::cout << "QRgb" << std::endl;
     QColor color(rgb);
     int red = color.red();
     int green = color.green();
-    int blue = color.blue();;
+    int blue = color.blue();
+    std::cout << red << " " << green << " " << blue << std::endl;
     if(!isLinesClass(red, green, blue)){
 	if(red < rgbThLines->r.fr){
 	    // update th and slider

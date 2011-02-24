@@ -5,11 +5,7 @@
 RawImageWidget::RawImageWidget(const QRect &rect, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
     setGeometry(rect);
     std::cout << "init rawimagewidget" << std::endl;
-    //this->image = NULL;
-    this->image = new QImage();
-    std::cout << "new" << std::endl;
-    bool isLoaded = this->image->load("/Users/hiramoto/Documents/workspace/Imazer/test/00000018.png");
-    std::cout << "loaded " << isLoaded << std::endl;
+    this->image = NULL;
 }
 
 RawImageWidget::~RawImageWidget(){
