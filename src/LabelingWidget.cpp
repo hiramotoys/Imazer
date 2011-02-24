@@ -1,6 +1,7 @@
 #include "LabelingWidget.h"
 #include <iostream>
 #include <QRgb>
+#include <cmath>
 
 LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
     setGeometry(rect);
@@ -58,38 +59,61 @@ void LabelingWidget::clickedLinesPixel(const QPoint &point){
     int green = color.green();
     int blue = color.blue();
     std::cout << red << " " << green << " " << blue << std::endl;
-    if(!isLinesClass(red, green, blue)){
-	if(red < rgbThLines->r.fr){
-	    // update th and slider
-	}
-	if(red > rgbThLines->r.to){
-	    // update th and slider
-	}
-	if(green < rgbThLines->g.fr){
-	    // update th and slider
-	}
-	if(green > rgbThLines->g.to){
-	    // update th and slider
-	}
-	if(blue < rgbThLines->b.fr){
-	    // update th and slider
-	}
-	if(blue > rgbThLines->b.to){
-	    // update th and slider
-	}
+    if(!isValueInClass(red, green, blue, rgbThLines)){
+	std::cout << "Line" << std::endl;
+	updateThresholdToIncludeTheParam(red, green, blue, rgbThLines);
+	// TODO if conflicted, change other threshold
+    }
+    if(!isValueInClass(red, green, blue, rgbThGreen)){
+	std::cout << "Green" << std::endl;
+	updateThresholdToIncludeTheParam(red, green, blue, rgbThGreen);
 	// TODO if conflicted, change other threshold
     }
 }
 
-bool LabelingWidget::isLinesClass(int red, int green, int blue){
-    if(red >= rgbThLines->r.fr && red <= rgbThLines->r.to && blue >= rgbThLines->b.fr && blue <= rgbThLines->b.to && green >= rgbThLines->g.fr && green <= rgbThLines->g.to){
-	return true;
+void LabelingWidget::updateThresholdToIncludeTheParam(int red, int green, int blue, RGBThresholdControlBox *rgbTh){
+    int distfr;
+    int distTor;
+    if( !(red < rgbTh->r.fr && red > rgbTh->r.to)){
+	// update th and slider
+	int distfr = (int)fabs(red - rgbTh->r.fr);
+	int distTo = (int)fabs(red - rgbTh->r.to);
+	if(distfr < distTo){
+	    rgbTh->setThValue(ColorAttributeID::R, red, rgbTh->r.to);
+	}
+	else{
+	    rgbTh->setThValue(ColorAttributeID::R, rgbTh->r.fr, red);
+	}
+	std::cout << "update red th " << rgbTh->r.fr << " " << rgbTh->r.to << std::endl;
     }
-    return false;
+    if( !(green < rgbTh->g.fr && green > rgbTh->g.to)){
+	// update th and slider
+	int distfr = (int)fabs(green - rgbTh->g.fr);
+	int distTo = (int)fabs(green - rgbTh->g.to);
+	if(distfr < distTo){
+	    rgbTh->setThValue(ColorAttributeID::G, green, rgbTh->g.to);
+	}
+	else{
+	    rgbTh->setThValue(ColorAttributeID::G, rgbTh->g.fr, green);
+	}
+	std::cout << "update green th " << rgbTh->g.fr << " " << rgbTh->g.to << std::endl;
+    }
+    if( !(blue < rgbTh->b.fr && blue > rgbTh->b.to)){
+	// update th and slider
+	int distfr = (int)fabs(blue - rgbTh->b.fr);
+	int distTo = (int)fabs(blue - rgbTh->b.to);
+	if(distfr < distTo){
+	    rgbTh->setThValue(ColorAttributeID::B, blue, rgbTh->b.to);
+	}
+	else{
+	    rgbTh->setThValue(ColorAttributeID::B, rgbTh->b.fr, blue);
+	}
+	std::cout << "update green th " << rgbTh->b.fr << " " << rgbTh->b.to << std::endl;
+    }
 }
 
-bool LabelingWidget::isGreenClass(int red, int green, int blue){
-    if(red >= rgbThGreen->r.fr && red <= rgbThGreen->r.to && blue >= rgbThGreen->b.fr && blue <= rgbThGreen->b.to && green >= rgbThGreen->g.fr && green <= rgbThGreen->g.to){
+bool LabelingWidget::isValueInClass(int red, int green, int blue, RGBThresholdControlBox *rgbTh){
+    if(red >= rgbTh->r.fr && red <= rgbTh->r.to && blue >= rgbTh->b.fr && blue <= rgbTh->b.to && green >= rgbTh->g.fr && green <= rgbTh->g.to){
 	return true;
     }
     return false;

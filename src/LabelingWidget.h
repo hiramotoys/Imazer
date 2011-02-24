@@ -30,8 +30,8 @@ class LabelingWidget : public QWidget{
     void updateRawImage(QImage *image);
     void clickedRawImage(const QPoint &point);
     void clickedLinesPixel(const QPoint &point);
-    bool isLinesClass(int r, int g, int b);
-    bool isGreenClass(int r, int g, int b);
+    void updateThresholdToIncludeTheParam(int red, int green, int blue, RGBThresholdControlBox *rgbTh);
+    bool isValueInClass(int red, int green, int blue, RGBThresholdControlBox *rgbTh);
     void movedrgbThBallSlider();
     void movedrgbThGreenSlider();
     void movedrgbThLinesSlider();
