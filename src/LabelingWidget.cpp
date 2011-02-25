@@ -12,6 +12,18 @@ LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFl
     std::cout << "init Labeling widget" << std::endl;
     QRect csRect(0, 0, 360, 70);
     classSelectorBox = new ClassSelectorBox(csRect, "Class Selector", this);
+    initHSVThControlBox();
+    this->image = new QImage();
+    std::cout << "new" << std::endl;
+    bool isLoaded = this->image->load("/Users/hiramotoys/Documents/workspace/Imazer/test/00000018.png");
+    std::cout << "loaded " << isLoaded << std::endl;
+    rawImageWidget->update(image);
+}
+
+LabelingWidget::~LabelingWidget(){
+}
+
+void LabelingWidget::initRGBThControlBox(){
     sliderGroupBox = new QGroupBox("Threshold Slider", this);
     sliderGroupBox->setGeometry(340, 70, 700, 400);
     sliderLayout = new QHBoxLayout();
@@ -26,14 +38,23 @@ LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFl
     rgbThGoalBlue = new RGBThresholdControlBox("goal blue");
     sliderLayout->addWidget(rgbThGoalBlue);
     sliderGroupBox->setLayout(sliderLayout);
-    this->image = new QImage();
-    std::cout << "new" << std::endl;
-    bool isLoaded = this->image->load("/Users/hiramoto/Documents/workspace/Imazer/test/00000018.png");
-    std::cout << "loaded " << isLoaded << std::endl;
-    rawImageWidget->update(image);
 }
 
-LabelingWidget::~LabelingWidget(){
+void LabelingWidget::initHSVThControlBox(){
+    sliderGroupBox = new QGroupBox("Threshold Slider", this);
+    sliderGroupBox->setGeometry(340, 70, 700, 400);
+    sliderLayout = new QHBoxLayout();
+    hsvThBall = new HSVThresholdControlBox("ball");
+    sliderLayout->addWidget(hsvThBall);
+    hsvThGreen = new HSVThresholdControlBox("green");
+    sliderLayout->addWidget(hsvThGreen);
+    hsvThLines = new HSVThresholdControlBox("lines");
+    sliderLayout->addWidget(hsvThLines);
+    hsvThGoalYellow = new HSVThresholdControlBox("goal yellow");
+    sliderLayout->addWidget(hsvThGoalYellow);
+    hsvThGoalBlue = new HSVThresholdControlBox("goal blue");
+    sliderLayout->addWidget(hsvThGoalBlue);
+    sliderGroupBox->setLayout(sliderLayout);
 }
 
 void LabelingWidget::updateRawImage(QImage *image){

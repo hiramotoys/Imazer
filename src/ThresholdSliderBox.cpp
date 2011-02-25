@@ -1,4 +1,5 @@
 #include "ThresholdSliderBox.h"
+#include "HSVThresholdControlBox.h"
 
 ThresholdSliderBox::ThresholdSliderBox(const int colorAttributeID, const QRect &rect, const QString &title, QWidget *iParent) : QGroupBox(title, iParent){
     this->colorAttributeID = colorAttributeID;
@@ -17,11 +18,11 @@ ThresholdSliderBox::~ThresholdSliderBox(){
 }
 
 void ThresholdSliderBox::changeThFr(int value){
-    //parentWidget()->updateThFrBySlider(colorAttributeID, value);
+    ((HSVThresholdControlBox *)(parentWidget()))->updateThFrBySlider(colorAttributeID, value);
 }
 
 void ThresholdSliderBox::changeThTo(int value){
-    //parentWidget()->updateThToBySlider(colorAttributeID, value);
+    ((HSVThresholdControlBox *)(parentWidget()))->updateThToBySlider(colorAttributeID, value);
 }
 
 void ThresholdSliderBox::setValue(int fr, int to){

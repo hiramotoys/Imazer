@@ -16,6 +16,7 @@ HEADERS += src/CentralWidget.h \
            src/RawImageWidget.h \ 
            src/ClassSelectorBox.h \
            src/RGBThresholdControlBox.h \
+           src/HSVThresholdControlBox.h \
            src/ThresholdSliderBox.h \
            src/Threshold.h \
            src/NaoWorldObjectID.h \
@@ -31,5 +32,6 @@ SOURCES += src/CentralWidget.cpp \
            src/RawImageWidget.cpp \
            src/ClassSelectorBox.cpp \
            src/RGBThresholdControlBox.cpp \
+           src/HSVThresholdControlBox.cpp \
            src/ThresholdSliderBox.cpp \
            src/Threshold.cpp
