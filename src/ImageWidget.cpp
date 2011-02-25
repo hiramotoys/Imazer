@@ -9,7 +9,7 @@ ImageWidget::ImageWidget(std::string IP, int PORT, int cameraid, QWidget *iParen
     this->cameraid = cameraid;
     image = NULL;
     registerImageClient(IP, PORT);
-    startTimer(100);
+    startTimer(1000);
 }
 
 ImageWidget::~ImageWidget(){
