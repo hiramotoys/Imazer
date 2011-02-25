@@ -67,7 +67,7 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonLayout->addWidget(fpsLabel);
     fpsSlider = new QSlider(Qt::Horizontal);
     fpsSlider->setRange(0, 30);
-    connect(fpsSlider, SIGNAL(valueChanged(int)), this, SLOT(changeFps(int)));
+    connect(fpsSlider, SIGNAL(sliderMoved(int)), this, SLOT(changeFps(int)));
     cameraButtonLayout->addWidget(fpsSlider);
     whiteBalanceLabel = new QLabel(); // white balance
     whiteBalanceLabel->setText("white balance");
@@ -82,7 +82,7 @@ void CentralWidget::initCameraParamWidget(){
     brightnessSlider = new QSlider(Qt::Horizontal);
     brightnessSlider->setRange(0, 255);
     //setBrightnessLabelText();
-    connect(brightnessSlider, SIGNAL(valueChanged(int)), this, SLOT(changeBrigtness(int)));
+    connect(brightnessSlider, SIGNAL(sliderMoved(int)), this, SLOT(changeBrigtness(int)));
     cameraButtonLayout->addWidget(brightnessSlider);
     //contrast
     contrastLabel = new QLabel();
@@ -90,7 +90,7 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonLayout->addWidget(contrastLabel);
     contrastSlider = new QSlider(Qt::Horizontal);
     contrastSlider->setRange(0, 127);
-    connect(contrastSlider, SIGNAL(valueChanged(int)), this, SLOT(changeContrast(int)));
+    connect(contrastSlider, SIGNAL(sliderMoved(int)), this, SLOT(changeContrast(int)));
     cameraButtonLayout->addWidget(contrastSlider);
     //saturation
     saturationLabel = new QLabel();
@@ -98,7 +98,7 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonLayout->addWidget(saturationLabel);
     saturationSlider = new QSlider(Qt::Horizontal);
     saturationSlider->setRange(0, 255);
-    connect(saturationSlider, SIGNAL(valueChanged(int)), this, SLOT(changeSaturation(int)));
+    connect(saturationSlider, SIGNAL(sliderMoved(int)), this, SLOT(changeSaturation(int)));
     cameraButtonLayout->addWidget(saturationSlider);
     //gain
     gainLabel = new QLabel();
@@ -109,7 +109,7 @@ void CentralWidget::initCameraParamWidget(){
     cameraButtonLayout->addWidget(autoGainCheckBox);
     gainSlider = new QSlider(Qt::Horizontal);
     gainSlider->setRange(0, 255);
-    connect(gainSlider, SIGNAL(valueChanged(int)), this, SLOT(changeGain(int)));
+    connect(gainSlider, SIGNAL(sliderMoved(int)), this, SLOT(changeGain(int)));
     cameraButtonLayout->addWidget(gainSlider);
     //exposition
     expositionLabel = new QLabel();
