@@ -3,13 +3,13 @@
 RGBThresholdControlBox::RGBThresholdControlBox(const QString &title, QWidget *iParent) : QGroupBox(title, iParent){
     layout = new QVBoxLayout();
     QRect rectRedSlider(0, 0, 100, 50);
-    redSlider = new ThresholdSliderBox(ColorAttributeID::R, rectRedSlider, "red threshold");
+    redSlider = new ThresholdSliderBox(0, 255, ColorAttributeID::R, rectRedSlider, "red threshold");
     layout->addWidget(redSlider);
     QRect rectGreenSlider(0, 50, 100, 50);
-    greenSlider = new ThresholdSliderBox(ColorAttributeID::G, rectGreenSlider, "green threshold");
+    greenSlider = new ThresholdSliderBox(0, 255, ColorAttributeID::G, rectGreenSlider, "green threshold");
     layout->addWidget(greenSlider);
     QRect rectBlueSlider(0, 100, 100, 50);
-    blueSlider = new ThresholdSliderBox(ColorAttributeID::B, rectBlueSlider, "blue threshold");
+    blueSlider = new ThresholdSliderBox(0, 255, ColorAttributeID::B, rectBlueSlider, "blue threshold");
     layout->addWidget(blueSlider);
     r.fr = 0;
     r.to = 0;
@@ -24,13 +24,13 @@ RGBThresholdControlBox::RGBThresholdControlBox(const QRect &rect, const QString 
     setGeometry(rect);
     layout = new QVBoxLayout();
     QRect rectRedSlider(0, 0, 100, 50);
-    redSlider = new ThresholdSliderBox(ColorAttributeID::R, rectRedSlider, "red threshold");
+    redSlider = new ThresholdSliderBox(0, 255, ColorAttributeID::R, rectRedSlider, "red threshold");
     layout->addWidget(redSlider);
     QRect rectGreenSlider(0, 50, 100, 50);
-    greenSlider = new ThresholdSliderBox(ColorAttributeID::G, rectGreenSlider, "green threshold");
+    greenSlider = new ThresholdSliderBox(0, 255, ColorAttributeID::G, rectGreenSlider, "green threshold");
     layout->addWidget(greenSlider);
     QRect rectBlueSlider(0, 100, 100, 50);
-    blueSlider = new ThresholdSliderBox(ColorAttributeID::B, rectBlueSlider, "blue threshold");
+    blueSlider = new ThresholdSliderBox(0, 255, ColorAttributeID::B, rectBlueSlider, "blue threshold");
     layout->addWidget(blueSlider);
     r.fr = 0;
     r.to = 0;
