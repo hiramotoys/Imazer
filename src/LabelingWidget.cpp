@@ -157,14 +157,11 @@ void LabelingWidget::updateLabeledImage(){
     int i = 0;
     int j = 0;
     for(int j = 0 ; j < height ; j++){
-    for(int i = 0 ; i < width ; i++){
-    color = new QColor(image->pixel(i, j));
-    //color = new QColor(255, 0, 0);
+	for(int i = 0 ; i < width ; i++){
+	    color = new QColor(image->pixel(i, j));
 	    color->getHsv(&h, &s, &v);
-	    //std::cout << h << " " << s << " " << v << std::endl;
 	    if(hsvThLines->isIncluded(h, s, v)){
 		limage->setPixel(i, j, RCNaoObjectColor::LINES.rgb());
-		//std::cout << "ball true" << std::endl;
 		c++;
 	    }
 	    if(hsvThGreen->isIncluded(h, s, v)){
@@ -186,12 +183,10 @@ void LabelingWidget::updateLabeledImage(){
 	    
 	    if(c > 1){
 		limage->setPixel(i, j, QColor(247, 171, 166).rgb());
-		//std::cout << "c " << c << std::endl;
 	    }
-	    //std::cout << "c " << c << std::endl;
 	    c = 0;
-	    }
-	    }
+	}
+    }
     labeledImageWidget->update();
     delete color;
 }
