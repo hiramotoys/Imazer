@@ -184,6 +184,9 @@ void LabelingWidget::updateLabeledImage(){
 	    if(c > 1){
 		limage->setPixel(i, j, QColor(247, 171, 166).rgb());
 	    }
+	    else if(c == 0){
+		limage->setPixel(i, j, QColor(0, 0, 0).rgb());
+	    }
 	    c = 0;
 	}
     }
