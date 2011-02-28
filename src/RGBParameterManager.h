@@ -1,7 +1,7 @@
 #ifndef RGBParameterManager_H
 #define RGBParameterManager_H
 
-#inluce "Threshold.h"
+#include "Threshold.h"
 
 class RGBParameterManager{
  public:
