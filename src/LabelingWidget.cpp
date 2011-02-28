@@ -1,7 +1,8 @@
 #include "LabelingWidget.h"
 #include <iostream>
-#include <QRgb>
 #include <cmath>
+#include "RCNaoObjectColor.h"
+#include <vector>
 
 LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFlags iFlags) : QWidget(iParent, iFlags){
     setGeometry(rect);
@@ -17,6 +18,7 @@ LabelingWidget::LabelingWidget(const QRect &rect, QWidget *iParent, Qt::WindowFl
     std::cout << "new" << std::endl;
     bool isLoaded = this->image->load("/Users/hiramotoys/Documents/workspace/Imazer/test/00000018.png");
     std::cout << "loaded " << isLoaded << std::endl;
+    std::cout << "limage init" << std::endl;
     rawImageWidget->update(image);
 }
 
@@ -62,6 +64,7 @@ void LabelingWidget::updateRawImage(QImage *image){
 }
 
 void LabelingWidget::clickedRawImage(const QPoint &point){
+    std::cout << "a " << a << std::endl;
     int objid = classSelectorBox->getSelectedObjectID();
     std::cout << objid << std::endl;
     switch(objid){
@@ -138,6 +141,59 @@ bool LabelingWidget::isValueInClass(int red, int green, int blue, RGBThresholdCo
 	return true;
     }
     return false;
+}
+
+void LabelingWidget::updateLabeledImage(){
+    std::cout << "updateLabeledImage" << std::endl;
+    //std::cout << "a "<< a << std::endl;
+    QImage *limage = labeledImageWidget->image;
+    //std::cout << "rgb " << image->pixel(0, 1) << std::endl;
+    QColor *color;
+    int c = 0;
+    int pindex;
+    int width = 320;
+    int height = 240;
+    int h, s, v;
+    int i = 0;
+    int j = 0;
+    for(int j = 0 ; j < height ; j++){
+    for(int i = 0 ; i < width ; i++){
+    color = new QColor(image->pixel(i, j));
+    //color = new QColor(255, 0, 0);
+	    color->getHsv(&h, &s, &v);
+	    //std::cout << h << " " << s << " " << v << std::endl;
+	    if(hsvThLines->isIncluded(h, s, v)){
+		limage->setPixel(i, j, RCNaoObjectColor::LINES.rgb());
+		//std::cout << "ball true" << std::endl;
+		c++;
+	    }
+	    if(hsvThGreen->isIncluded(h, s, v)){
+		limage->setPixel(i, j, RCNaoObjectColor::GREEN.rgb());
+		c++;
+	    }
+	    if(hsvThBall->isIncluded(h, s, v)){
+		limage->setPixel(i, j, RCNaoObjectColor::BALL.rgb());
+		c++;
+	    }
+	    if(hsvThGoalYellow->isIncluded(h, s, v)){
+		limage->setPixel(i, j, RCNaoObjectColor::GOAL_YELLOW.rgb());
+		c++;
+	    }
+	    if(hsvThGoalBlue->isIncluded(h, s, v)){
+		limage->setPixel(i, j, RCNaoObjectColor::GOAL_BLUE.rgb());
+		c++;
+	    }
+	    
+	    if(c > 1){
+		limage->setPixel(i, j, QColor(247, 171, 166).rgb());
+		//std::cout << "c " << c << std::endl;
+	    }
+	    //std::cout << "c " << c << std::endl;
+	    c = 0;
+	    }
+	    }
+    labeledImageWidget->update();
+    delete color;
 }
 
 void LabelingWidget::movedrgbThBallSlider(){

@@ -6,6 +6,7 @@
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QImage>
+#include <QRgb>
 #include "RawImageWidget.h"
 #include "LabeledImageWidget.h"
 #include "RGBThresholdControlBox.h"
@@ -13,8 +14,10 @@
 #include "ClassSelectorBox.h"
 
 class LabelingWidget : public QWidget{
+    Q_OBJECT
   private:
     QImage *image;
+    QImage *limage;
     RawImageWidget *rawImageWidget;
     LabeledImageWidget *labeledImageWidget;
     RGBThresholdControlBox *rgbThBall;
@@ -31,6 +34,7 @@ class LabelingWidget : public QWidget{
     QGroupBox *sliderGroupBox;
     QHBoxLayout *sliderLayout;
   public:
+    int a;
     LabelingWidget(const QRect &rect, QWidget *iParent=0, Qt::WindowFlags iFlags=0);
     ~LabelingWidget();
     void initRGBThControlBox();
@@ -40,6 +44,7 @@ class LabelingWidget : public QWidget{
     void clickedLinesPixel(const QPoint &point);
     void updateThresholdToIncludeTheParam(int red, int green, int blue, RGBThresholdControlBox *rgbTh);
     bool isValueInClass(int red, int green, int blue, RGBThresholdControlBox *rgbTh);
+    void updateLabeledImage();
     void movedrgbThBallSlider();
     void movedrgbThGreenSlider();
     void movedrgbThLinesSlider();
